@@ -1,10 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
+export default function AppGym() {
   return (
     <View style={styles.container}>
       <Text>Hola, Coder!</Text>
+      <Button
+        onPress={apretame = () => {}}
+        title='Apretame'
+        color={"#000"}
+        accessibilityLabel='Que hara este boton?'
+      />
       <StatusBar style="auto" />
     </View>
   );
