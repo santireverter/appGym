@@ -3,7 +3,7 @@ import CardProduct from "./CardProduct";
 
 const ProductList = ({products, onOpenModal}) => {
     return(
-        <View>
+        <View style={styles.container}>
             <FlatList
                 data={products}
                 keyExtractor={products.id}
@@ -18,7 +18,10 @@ const ProductList = ({products, onOpenModal}) => {
 } 
 
 const styles = StyleSheet.create({
-
+    container: {
+        width: "80%",
+        flexDirection: "column",
+    }
 })
 
 export default ProductList;

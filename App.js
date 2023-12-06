@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#ffffff',
     alignItems: 'center',
-    justifyContent: 'top',
+    justifyContent: 'center',
     marginTop: 50,
   }
 });
