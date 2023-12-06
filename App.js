@@ -1,7 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Button, FlatList, Modal, StyleSheet, Text, TextInput, TextInputComponent, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import uuid from 'react-native-uuid';
+import AddProduct from './src/components/AddProduct';
+import DeleteModal from './src/components/DeleteModal';
+import ProductList from './src/components/ProductList';
 
 export default function AppGym() {
 
@@ -36,49 +39,20 @@ const handlerCloseModal = () =>{
 
   return (
     <View style={styles.container}>
-      <Text>Hola, Coder!</Text>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.textInput}
-          placeholder='completame'
-          onChangeText={(title) => setNewProductTitle(title)}
-          value = {newProductTitle}
-        />
-        <Button
-          onPress={() => handlerAddProduct()}
-          title='Agregar'
-          color={"#000"}
-        />
-      </View>
-      <FlatList
-        data={products}
-        keyExtractor={products.id}
-        renderItem={({item})=> <View
-                                  style={styles.textInput}
-                                >
-                                  <Text>Nombre de Producto: {item.title}</Text>
-                                  <Text>ID del producto: {item.id}</Text>
-                                  <Button
-                                    title='X'
-                                    onPress={() => handlerOpenModal(item)}
-                                  />
-                                </View>
-                    }
+      <AddProduct
+        onChangeText = {setNewProductTitle}
+        onAddProduct = {handlerAddProduct}
+        productTitle = {newProductTitle}
       />
-      <Modal
-        visible = {modalVisible} 
-      >
-        <Text>Desea eliminar este ejercicio?</Text>
-        <Button
-          title='Eliminar'
-          onPress={()=> handlerDeleteProduct()}
-        />
-        <Button
-          title='Cancelar'
-          onPress={()=> handlerCloseModal()}
-        />
-      </Modal>
-      <StatusBar style="auto" />
+      <ProductList
+        products = {products}
+        onOpenModal = {handlerOpenModal}
+      />
+      <DeleteModal
+        visible = {modalVisible}
+        onDelete = {handlerDeleteProduct}
+        onClose = {handlerCloseModal}
+      />
     </View>
   );
 }
@@ -90,16 +64,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'top',
     marginTop: 50,
-  },
-  inputContainer:{
-    flexDirection: "row",
-    width: "85%",
-  },
-  textInput: {
-    borderWidth: 3,
-    width: "75%",
-    marginRight: 10,
-    marginTop: 15,
-    padding: 10,
   }
 });
