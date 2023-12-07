@@ -6,17 +6,22 @@ const DeleteModal = ({visible, onDelete, onClose}) => {
         <View style={styles.containerModal}>
             <Modal
                 visible = {visible}
-                style= {styles.modal}
+                animationType='fade'
+                transparent={true}
             >
-                <Text>Desea eliminar este ejercicio?</Text>
-                <Button
-                    title='Eliminar'
-                    onPress={()=> onDelete()}
-                />
-                <Button
-                    title='Cancelar'
-                    onPress={()=> onClose()}
-                />
+                <View style={styles.container}>
+                    <Text style={styles.text}>Desea eliminar este ejercicio?</Text>
+                    <View style={styles.buttonContainer}>
+                        <Button
+                            title='Eliminar'
+                            onPress={()=> onDelete()}
+                        />
+                        <Button
+                            title='Cancelar'
+                            onPress={()=> onClose()}
+                        />
+                    </View>
+                </View>
             </Modal>
         </View>
     )
@@ -24,16 +29,31 @@ const DeleteModal = ({visible, onDelete, onClose}) => {
 
 const styles = StyleSheet.create({
     containerModal:{
-        width: "50%",
-        height: "50%",
         flex: 1,
-        alignContent: "center",
+        alignItems: "center",
         justifyContent: "center",
     },
-    modal:{
-        height: "50%",
-        width: "50%",
-    }
+    container: {
+        justifyContent: 'space-around',  
+        backgroundColor : "#f6f6f6",   
+        height: 300 ,  
+        width: '80%',  
+        borderRadius:10,  
+        borderWidth: 2,  
+        borderColor: '#ECF0F1',    
+        marginTop: 120,  
+        marginLeft: 40,
+        elevation: 2,
+    },
+    text:{
+        fontSize: 18,
+        paddingLeft: 25,
+        paddingRight: 25,
+    },
+    buttonContainer:{
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+    },
 })
 
 export default DeleteModal;

@@ -25,13 +25,15 @@ const styles = StyleSheet.create({
     },
     card:{
         width: "90%",
-        borderWidth: 1,
-        borderRadius: 5,
+        borderWidth: 2,
+        backgroundColor: "#ECF0F1",
+        borderColor: "#ECF0F1",
+        borderRadius: 10,
         marginTop: 20,
         padding: 15,
-        shadowColor: "#000",
         flexDirection: "row",
         flexWrap: "wrap",
+        elevation: 7,
     },
     buttonContainer: {
         marginTop: 20,
