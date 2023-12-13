@@ -1,20 +1,19 @@
-import { View, Text, Button, StyleSheet } from "react-native"
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
 
-const CardProduct = ({item, onOpenModal}) => {
-    return(
+const CardPreCharged = ({item}) => {
+    return (
         <View style={styles.container}>
             <View
                 style={styles.card}
             >
-                <Text style={styles.text}>Ejercicio: {item.title}</Text>
-                <Button
-                    title='X'
-                    onPress={() => onOpenModal(item)}
-                />
+                <Text>{item.title}</Text>
             </View>
         </View>
     )
 }
+
+export default CardPreCharged
 
 const styles = StyleSheet.create({
     container: {
@@ -35,9 +34,4 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
         elevation: 7,
     },
-    text:{
-        fontFamily: "Lato",
-    }
 })
-
-export default CardProduct;

@@ -6,7 +6,7 @@ const AddProduct = ({onChangeText, onAddProduct, productTitle}) => {
         <View style={styles.container}>
             <TextInput
                 style={styles.textInput}
-                placeholder='Ingrese un producto'
+                placeholder='Ingrese ejercicio'
                 onChangeText={(title) => onChangeText(title)}
                 value = {productTitle}
             />

@@ -1,68 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import uuid from 'react-native-uuid';
-import AddProduct from './src/components/AddProduct';
-import DeleteModal from './src/components/DeleteModal';
-import ProductList from './src/components/ProductList';
+import Home from './src/screens/Home';
+import Categories from './src/screens/Categories';
+import Ejercicios from './src/screens/Ejercicios';
+import {useFonts} from "expo-font"
+import { useState } from 'react';
 
 export default function AppGym() {
 
-const [newProductTitle, setNewProductTitle] = useState("");
-const [products, setProducts] = useState([]);
-const [selectedProduct, setSelectedProduct] = useState({});
-const [modalVisible, setModalVisible] = useState(false);
+    const [selectedScreen, setSelectedScreen] = useState("Home");
+    const [fontsLoaded] = useFonts({
+        Lato:require('./assets/lato/Lato-Black.ttf')
+    })
 
-const handlerAddProduct = () =>{
+    if (!fontsLoaded) return null;
 
-  const newProduct = {
-    id: uuid.v4(),
-    title: newProductTitle
-  }
-  setProducts(current => [...current, newProduct])
-  setNewProductTitle("");
-};
-
-const handlerDeleteProduct = () =>{
-  setProducts(current => current.filter(product => product.id ==! selectedProduct.id));
-  setModalVisible(false);
-}
-
-const handlerOpenModal = (item) =>{
-  setModalVisible(true);
-  setSelectedProduct({item});
-};
-
-const handlerCloseModal = () =>{
-  setModalVisible(false);
-};
-
-  return (
+    return (
     <View style={styles.container}>
-      <AddProduct
-        onChangeText = {setNewProductTitle}
-        onAddProduct = {handlerAddProduct}
-        productTitle = {newProductTitle}
-      />
-      <ProductList
-        products = {products}
-        onOpenModal = {handlerOpenModal}
-      />
-      <DeleteModal
-        visible = {modalVisible}
-        onDelete = {handlerDeleteProduct}
-        onClose = {handlerCloseModal}
-      />
+        {selectedScreen === "Home" ? <Home changePage={setSelectedScreen}/> : <Categories goHome={setSelectedScreen}/>}
     </View>
-  );
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ffffff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 50,
-  }
+    container: {
+        flex: 1,
+        backgroundColor: '#ffffff',
+        alignItems: 'center',
+        height: "100%",
+        width: "100%",
+        fontFamily: "Lato",
+    }
 });
